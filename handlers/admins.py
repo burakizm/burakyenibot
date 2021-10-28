@@ -9,10 +9,10 @@ from helpers.filters import command, other_filters
 from helpers.decorators import errors, authorized_users_only
 
 
-@Client.on_message(command("pause") & other_filters)
+@Client.on_message(command("durdur") & other_filters)
 @errors
 @authorized_users_only
-async def pause(_, message: Message):
+async def durdur(_, message: Message):
     if (
             message.chat.id not in callsmusic.pytgcalls.active_calls
     ) or (
@@ -21,13 +21,13 @@ async def pause(_, message: Message):
         await message.reply_text("❗ Hiçbir şey çalmıyor!")
     else:
         callsmusic.pytgcalls.pause_stream(message.chat.id)
-        await message.reply_text("▶️ **Müzik duraklatıldı!**\n\n• Müzik kullanımına devam etmek için **komut » resume**") 
+        await message.reply_text("▶️ **Müzik duraklatıldı!**\n\n• Müzik kullanımına devam etmek için **komut » devam**") 
 
 
-@Client.on_message(command("resume") & other_filters)
+@Client.on_message(command("devam") & other_filters)
 @errors
 @authorized_users_only
-async def resume(_, message: Message):
+async def devam(_, message: Message):
     if (
             message.chat.id not in callsmusic.pytgcalls.active_calls
     ) or (
@@ -36,13 +36,13 @@ async def resume(_, message: Message):
         await message.reply_text("❗ Hiçbir şey duraklatılmadı!")
     else:
         callsmusic.pytgcalls.resume_stream(message.chat.id)
-        await message.reply_text("⏸ **Müzik devam ediyor!**\n\n• Kullanımı duraklatmak için **komut » pause**")
+        await message.reply_text("⏸ **Müzik devam ediyor!**\n\n• Kullanımı duraklatmak için **komut » durdur**")
 
 
-@Client.on_message(command("end") & other_filters)
+@Client.on_message(command("son") & other_filters)
 @errors
 @authorized_users_only
-async def stop(_, message: Message):
+async def son(_, message: Message):
     if message.chat.id not in callsmusic.pytgcalls.active_calls:
         await message.reply_text("❗ Hiçbir şey yayınlanmıyor!")
     else:
@@ -55,10 +55,10 @@ async def stop(_, message: Message):
         await message.reply_text("✅ **Müzik durduruldu!**\n\n• **Userbot'un sesli sohbet bağlantısı kesildi**")
 
 
-@Client.on_message(command("skip") & other_filters)
+@Client.on_message(command("atla") & other_filters)
 @errors
 @authorized_users_only
-async def skip(_, message: Message):
+async def atla(_, message: Message):
     if message.chat.id not in callsmusic.pytgcalls.active_calls:
         await message.reply_text("❗ Atlatılacak müzik yok!")
     else:
