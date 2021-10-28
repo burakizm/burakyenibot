@@ -5,7 +5,7 @@ from config import BOT_USARNAME, BOT_NAME as bot
 from helpers.filters import other_filters2
 
 
-@Client.on_message(command(["start", f"start@{BOT_USARNAME}"]))
+@Client.on_message(filters.command(["start", f"start@{BOT_USARNAME}"]))
 async def start(_, message: Message):
     await message.reply_text(
         f"""**Merhaba, {message.from_user.mention} 🎵
